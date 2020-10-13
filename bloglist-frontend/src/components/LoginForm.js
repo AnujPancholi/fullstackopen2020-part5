@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-const LoginForm = ({ performLogin }) => {
+import loginService from "../services/login.js";
+
+import { useToasts } from "react-toast-notifications";
+
+const LoginForm = ({ setUser }) => {
 
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
@@ -17,6 +21,39 @@ const LoginForm = ({ performLogin }) => {
         event.preventDefault();
         performLogin(username,password);
     }
+
+
+    const { addToast } = useToasts();
+
+    const performLogin = (username,password) => {
+      (async() => {
+        console.log(`LOGIN CALLED: ${username}:${password}`);
+        try {
+          const loginResult = await loginService.login(username,password);
+          if(loginResult.data && loginResult.data.message){
+            switch(loginResult.data.message){
+              case "LOGIN SUCCESSFUL":
+                setUser(loginResult.data);
+                break;
+              default: 
+                throw new Error(loginResult.data.message);
+                break;
+            }
+          } else {
+            throw new Error(`MALFORMED RESPONSE FROM LOGIN SERVICE`);
+          }
+
+        } catch(e) {
+          console.error(`performLogin|ERROR`,e);
+          addToast(e.message || "AN UNKNOWN ERROR OCCURRED",{
+            appearance: 'error',
+            autoDismiss: true
+          });
+        }
+
+      })();
+    }
+
 
     return (<div>
         <form onSubmit={handleLogin}>
