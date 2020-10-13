@@ -11,7 +11,7 @@ const login = async (username = "",password = "") => {
             method: "POST",
             url: '/',
             headers: {
-                "Authorization": `Basic ${atob(`${username}:${password}`)}`
+                "Authorization": `Basic ${btoa(`${username}:${password}`)}`
             }
         })
 
@@ -36,13 +36,13 @@ const login = async (username = "",password = "") => {
             return {
                 success: false,
                 data: {
-                    "message": "COULD NOT MAKE REQUEST TO LOGIN SERVICE"
+                    "message": e.message || "COULD NOT MAKE REQUEST TO LOGIN SERVICE"
                 }
             }
         }
     }
 }
 
-module.exports = {
+export default {
     login
 }
