@@ -27,6 +27,7 @@ const App = () => {
     </div>
   ) : (
     <div>
+      <p>Hello, {user.username}</p>
       <h2>blogs</h2>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
