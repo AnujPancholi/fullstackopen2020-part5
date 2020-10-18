@@ -87,7 +87,10 @@ loginRouter.post('/',(req,res,next) => {
         resultObj.error = null;
         resultObj.data = {
           message: "LOGIN SUCCESSFUL",
-          token: token
+          token: token,
+          username: userObj.username,
+          name: userObj.name,
+          user_type: userObj.user_type
             
         }
       } else {
