@@ -17,6 +17,19 @@ const App = () => {
     )  
   }, [])
 
+  useEffect(() => {
+    const currentLoginBlob = localStorage.getItem("loggedInUser");
+    let currUser = null;
+    try{
+      if(currentLoginBlob){
+        currUser = JSON.stringify(currentLoginBlob);
+        setUser(currUser);
+      }
+    }catch(e){
+      console.error(`USER|ERROR|MALFORMED USER BLOB`,e);
+    }
+  },[])
+
   console.log(`STATE: USER: `,user);
 
   return user===null ? (
