@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import loginService from "../services/login.js";
 
+import CONSTANTS from "../lib/constants.js";
+
 import { useToasts } from "react-toast-notifications";
 
 const LoginForm = ({ setUser }) => {
@@ -34,6 +36,7 @@ const LoginForm = ({ setUser }) => {
             switch(loginResult.data.message){
               case "LOGIN SUCCESSFUL":
                 setUser(loginResult.data);
+                localStorage.setItem(CONSTANTS.LS_LOGIN_NAME,JSON.stringify(loginResult.data));
                 break;
               default: 
                 throw new Error(loginResult.data.message);

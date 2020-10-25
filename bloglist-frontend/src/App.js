@@ -5,6 +5,8 @@ import LoginForm from './components/LoginForm.js';
 //services
 import blogService from './services/blogs.js';
 
+import CONSTANTS from "./lib/constants.js";
+
 import { ToastProvider } from "react-toast-notifications"; 
 
 const App = () => {
@@ -18,11 +20,11 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    const currentLoginBlob = localStorage.getItem("loggedInUser");
+    const currentLoginBlob = localStorage.getItem(CONSTANTS.LS_LOGIN_NAME);
     let currUser = null;
     try{
       if(currentLoginBlob){
-        currUser = JSON.stringify(currentLoginBlob);
+        currUser = JSON.parse(currentLoginBlob);
         setUser(currUser);
       }
     }catch(e){
