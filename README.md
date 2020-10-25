@@ -12,6 +12,21 @@ Also, to show any notification (such as failed login), I decided to use a toast 
 
 **NOTE:** It's after completing this exercise that I noticed that I have not displayed the name of the logged in user on the front end. Since the focus is on the completed application, I will include this later.
 
+## Exercise 5.2
+
+**NOTE:** I usually make a commit for each exercise but I have made a combined commit for 5.2, 5.3 and 5.4 in haste.
+
+Added a `setItem` call in the login process, and made a simple function to logout, which cleared the specific JSON blob stored in `localStorage`, triggered by a simple button.
+
+
+## Exercise 5.3
+
+Added a component `BlogEntryForm` in the file `BlogListing.js` file itself. I was going to make this a separate component but decided to make it a child component of `BlogListing` because I would need to refresh the blog listing after addition of the new blog, so I would need some way to do that, such as passing a function to refresh the blogs as a prop to this component.
+
+## Exercise 5.4
+
+Had inadvertantly done this already using `react-toast-notifications`.
+
 
 
 ---
