@@ -10,10 +10,14 @@ const BlogListing = ({user,setUser}) => {
 
     const [blogs,setBlogs] = useState([]);
 
-    useEffect(() => {
+    const refreshBlogList = () => {
         blogService.getAll().then(blogs =>
-          setBlogs( blogs )
-        )  
+            setBlogs( blogs )
+        )
+    }
+
+    useEffect(() => {
+         refreshBlogList(); 
       }, [])
 
     const logout = () => {
