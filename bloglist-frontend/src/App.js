@@ -34,7 +34,9 @@ const App = () => {
       </ToastProvider>
     </div>
   ) : (
-    <BlogListing user={user} setUser={setUser} />
+    <ToastProvider>
+      <BlogListing user={user} setUser={setUser} />
+    </ToastProvider>
   )
 }
 
