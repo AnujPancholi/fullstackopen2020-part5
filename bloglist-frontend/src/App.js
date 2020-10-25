@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from 'react';
 //components
-import Blog from './components/Blog.js';
+import BlogListing from "./components/BlogListing.js";
 import LoginForm from './components/LoginForm.js';
-//services
-import blogService from './services/blogs.js';
+
 
 import CONSTANTS from "./lib/constants.js";
 
 import { ToastProvider } from "react-toast-notifications"; 
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]);
+  
   const [user,setUser] = useState(null);
-
-  useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
-  }, [])
 
   useEffect(() => {
     const currentLoginBlob = localStorage.getItem(CONSTANTS.LS_LOGIN_NAME);
@@ -41,13 +34,7 @@ const App = () => {
       </ToastProvider>
     </div>
   ) : (
-    <div>
-      <p>Hello, {user.username}</p>
-      <h2>blogs</h2>
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )}
-    </div>
+    <BlogListing user={user} />
   )
 }
 
