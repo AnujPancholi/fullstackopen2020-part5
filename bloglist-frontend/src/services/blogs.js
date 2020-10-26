@@ -1,6 +1,10 @@
 import axios from 'axios'
 const baseUrl = '/api/blogs'
 
+const blogsAxios = axios.create({
+  baseURL: baseUrl
+})
+
 const getAll = () => {
   const request = axios.get(baseUrl)
   return request.then(response => response.data)
@@ -10,9 +14,9 @@ const addNewBlog = (blogDetails,token) => {
   return new Promise((resolve,reject) => {
     (async() => {
       try{
-        const blogAdditionResult = await axios({
+        const blogAdditionResult = await blogsAxios({
             method: "POST",
-            url: `http://localhost:3001/api/blogs`,
+            url: `/`,
             headers: {
               "Authorization": `Bearer ${token}`
             },
