@@ -8,10 +8,13 @@ import blogService from "../services/blogs.js";
 
 import { useToasts } from "react-toast-notifications";
 
+import "./css/BlogEntryForm.css";
+
 const BlogEntryForm = ({ refreshBlogList, user }) => {
 
     const [title,setTitle] = useState("");
     const [url,setUrl] = useState("");
+    const [isVisible,setIsVisible] = useState(false);
 
     const { addToast } = useToasts();
 
@@ -55,9 +58,13 @@ const BlogEntryForm = ({ refreshBlogList, user }) => {
         })();
     }
 
+    const toggleFormVisibility = () => {
+        setIsVisible(!isVisible);
+    }
+
 
     return (<div>
-        <form onSubmit={handleAddBlogSubmit}>
+        <form onSubmit={handleAddBlogSubmit} className={isVisible ? "" : "hidden"}>
         <div>
           title
             <input
@@ -78,6 +85,12 @@ const BlogEntryForm = ({ refreshBlogList, user }) => {
         </div>
         <button type="submit">Add</button>
       </form>
+      <button onClick={toggleFormVisibility} className={isVisible ? "" : "hidden"}>
+          Hide
+      </button>
+      <button onClick={toggleFormVisibility} className={isVisible ? "hidden" : ""}>
+          Add new blog
+      </button>
         </div>)
 
 
