@@ -27,6 +27,10 @@ Added a component `BlogEntryForm` in the file `BlogListing.js` file itself. I wa
 
 Had inadvertantly done this already using `react-toast-notifications`.
 
+## Exercise 5.5
+
+Instead of having the boolean for visibility in the state of the root component (like shown in the course) I decided to add this boolean in the state of the form itself. To change the rendering based on this boolean, I used a css file in which I created a class that simply sets `display: none` for a particular element. I added this className to the requisite elements based on the `isVisible` boolean of the state.
+
 
 
 ---
