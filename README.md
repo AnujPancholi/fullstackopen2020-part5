@@ -43,6 +43,9 @@ I had already separated the `BlogEntryForm` into its own component, but moreover
  - It takes a user object (for the token that it needs to make the request) and a function to refresh the blog listings in the props from its parent. The function that it takes does change the state of its parent (by triggering a call to the blogs backend service to fetch all the blogs and refresh the listing), but intead of changing the value in the form, it changes a property in the state that it doesn't take from the parent.
 
   
+## Exercise 5.11
+
+I decided to go with this exercise first because the preceeding exercises were optional. Used proptypes check on the `BlogListing` component.
 
 ---
 
