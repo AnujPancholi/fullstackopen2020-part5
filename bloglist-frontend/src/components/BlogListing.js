@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import Blog from "./Blog.js";
 import BlogEntryForm from "./BlogEntryForm.js";
@@ -35,6 +36,11 @@ const BlogListing = ({user,setUser}) => {
           <Blog key={blog.id} blog={blog} />
         )}
       </div>)
+}
+
+BlogListing.propTypes = {
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired
 }
 
 export default BlogListing;
