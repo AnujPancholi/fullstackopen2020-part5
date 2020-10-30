@@ -1,100 +1,100 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 
-import "./css/BlogEntryForm.css";
+import './css/BlogEntryForm.css'
 
-import { useToasts } from "react-toast-notifications";
+import { useToasts } from 'react-toast-notifications'
 
-import blogService from "../services/blogs.js";
+import blogService from '../services/blogs.js'
 
 
 
 const BlogEntryForm = ({ refreshBlogList, user }) => {
 
-    const [title,setTitle] = useState("");
-    const [url,setUrl] = useState("");
-    const [isVisible,setIsVisible] = useState(false);
+  const [title,setTitle] = useState('')
+  const [url,setUrl] = useState('')
+  const [isVisible,setIsVisible] = useState(false)
 
-    const { addToast } = useToasts();
+  const { addToast } = useToasts()
 
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-    }
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value)
+  }
 
-    const handleUrlChange = (event) => {
-        setUrl(event.target.value);
-    }
+  const handleUrlChange = (event) => {
+    setUrl(event.target.value)
+  }
 
-    const handleAddBlogSubmit = (event) => {
-        (async() => {
-            event.preventDefault();
-            try{
-                
-                if(title.length===0 || url.length===0){
-                    console.log("handleAddBlogSubmit err condition");
-                    throw new Error("Fields cannot be empty");
-                }
+  const handleAddBlogSubmit = (event) => {
+    (async() => {
+      event.preventDefault()
+      try{
 
-                const addBlogResult = await blogService.addNewBlog({
-                    title: title,
-                    url: url
-                },user.token);
+        if(title.length===0 || url.length===0){
+          console.log('handleAddBlogSubmit err condition')
+          throw new Error('Fields cannot be empty')
+        }
 
-                addToast(`Blog "${title}" added`,{
-                    appearance: "success",
-                    autoDismiss: true,
-                });
+        const addBlogResult = await blogService.addNewBlog({
+          title: title,
+          url: url
+        },user.token)
 
-                refreshBlogList();
+        addToast(`Blog "${title}" added`,{
+          appearance: 'success',
+          autoDismiss: true,
+        })
 
-            }catch(e){
-                console.error(`BlogEntryForm|ERROR`,e.message);
-                addToast(e.message || "AN ERROR OCCURRED",{
-                    appearance: "error",
-                    autoDismiss: true,
-                });
-            }
-        })();
-    }
+        refreshBlogList()
 
-    const toggleFormVisibility = () => {
-        setIsVisible(!isVisible);
-    }
+      }catch(e){
+        console.error('BlogEntryForm|ERROR',e.message)
+        addToast(e.message || 'AN ERROR OCCURRED',{
+          appearance: 'error',
+          autoDismiss: true,
+        })
+      }
+    })()
+  }
+
+  const toggleFormVisibility = () => {
+    setIsVisible(!isVisible)
+  }
 
 
-    return (<div>
-        <form onSubmit={handleAddBlogSubmit} className={isVisible ? "" : "hidden"}>
-        <div>
+  return (<div>
+    <form onSubmit={handleAddBlogSubmit} className={isVisible ? '' : 'hidden'}>
+      <div>
           title
-            <input
-            type="text"
-            value={title}
-            name="Title"
-            onChange={handleTitleChange}
-          />
-        </div>
-        <div>
+        <input
+          type="text"
+          value={title}
+          name="Title"
+          onChange={handleTitleChange}
+        />
+      </div>
+      <div>
           url
-            <input
-            type="text"
-            value={url}
-            name="URL"
-            onChange={handleUrlChange}
-          />
-        </div>
-        <button type="submit">Add</button>
-      </form>
-      <button onClick={toggleFormVisibility} className={isVisible ? "" : "hidden"}>
+        <input
+          type="text"
+          value={url}
+          name="URL"
+          onChange={handleUrlChange}
+        />
+      </div>
+      <button type="submit">Add</button>
+    </form>
+    <button onClick={toggleFormVisibility} className={isVisible ? '' : 'hidden'}>
           Hide
-      </button>
-      <button onClick={toggleFormVisibility} className={isVisible ? "hidden" : ""}>
+    </button>
+    <button onClick={toggleFormVisibility} className={isVisible ? 'hidden' : ''}>
           Add new blog
-      </button>
-        </div>)
+    </button>
+  </div>)
 
 
 }
 
 
 
-export default BlogEntryForm;
+export default BlogEntryForm

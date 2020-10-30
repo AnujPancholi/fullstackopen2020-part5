@@ -15,30 +15,30 @@ const addNewBlog = (blogDetails,token) => {
     (async() => {
       try{
         const blogAdditionResult = await blogsAxios({
-            method: "POST",
-            url: `/`,
-            headers: {
-              "Authorization": `Bearer ${token}`
-            },
-            data: blogDetails
-          });
+          method: 'POST',
+          url: '/',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          data: blogDetails
+        })
 
-          resolve(blogAdditionResult.data);
+        resolve(blogAdditionResult.data)
 
       }catch(e){
         if(e.response){
-          reject(e.response.data);
+          reject(e.response.data)
         } else if(e.request){
           reject({
-            message: "NO RESPONSE FROM SERVER"
+            message: 'NO RESPONSE FROM SERVER'
           })
         } else {
           reject({
-            method: "AN ERROR OCCURRED"
+            method: 'AN ERROR OCCURRED'
           })
         }
       }
-    })();
+    })()
   })
 }
 
