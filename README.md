@@ -47,6 +47,13 @@ I had already separated the `BlogEntryForm` into its own component, but moreover
 
 I decided to go with this exercise first because the preceeding exercises were optional. Used proptypes check on the `BlogListing` component.
 
+
+## Exercise 5.12
+
+Setting up the eslint config and scripts was pretty simple, I took the file as described in the course, added a rule of my own, removed one rule that was causing issues, and auto-corrected the linting errors throughout the project.
+
+
+
 ---
 
 
