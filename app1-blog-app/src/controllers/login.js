@@ -90,7 +90,8 @@ loginRouter.post('/',(req,res,next) => {
           token: token,
           username: userObj.username,
           name: userObj.name,
-          user_type: userObj.user_type
+          user_type: userObj.user_type,
+          id: userObj.id.toString()
             
         }
       } else {
