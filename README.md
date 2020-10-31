@@ -53,6 +53,9 @@ I decided to go with this exercise first because the preceeding exercises were o
 Setting up the eslint config and scripts was pretty simple, I took the file as described in the course, added a rule of my own, removed one rule that was causing issues, and auto-corrected the linting errors throughout the project.
 
 
+## Exercise 5.7
+
+Added a flag to check if the details should be visible in the state, a function as a handler to toggle it, and the button itself that triggers this handler on click.
 
 ---
 
