@@ -57,6 +57,13 @@ Setting up the eslint config and scripts was pretty simple, I took the file as d
 
 Added a flag to check if the details should be visible in the state, a function as a handler to toggle it, and the button itself that triggers this handler on click.
 
+
+## Exercise 5.8
+
+Added the functionality, however, did not need to send all the blog details, just needed to use `$inc` with 1. Also had to make a separate component for showing the likes so that they could be increased in the front end. Refreshing the page would sync the latest count from the server.
+
+
+
 ---
 
 
