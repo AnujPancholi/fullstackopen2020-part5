@@ -36,7 +36,7 @@ const LikesContainer = ({ likesCount, blogId }) => {
 }
 
 
-const Blog = ({ blog, refreshBlogList, token }) => {
+const Blog = ({ blog, refreshBlogList, user }) => {
   const [isDetailsVisible,setIsDetailsVisible] = useState(false)
 
   const { addToast } = useToasts()
@@ -51,7 +51,7 @@ const Blog = ({ blog, refreshBlogList, token }) => {
   const performBlogDelete = () => {
     (async() => {
       try{
-        const blogDeleteResult = await blogService.deleteBlog(blog.id,token)
+        const blogDeleteResult = await blogService.deleteBlog(blog.id,user.token)
         refreshBlogList()
         addToast('Blog deleted',{
           appearance: 'success',
@@ -76,7 +76,7 @@ const Blog = ({ blog, refreshBlogList, token }) => {
         <hr />
         Blog URL: {blog.url}<br />
         <LikesContainer likesCount={blog.likes} blogId={blog.id} />
-        <button onClick={performBlogDelete}>
+        <button onClick={performBlogDelete} className={user && blog.user && blog.user.id===user.id ? '' : 'hidden'}>
           Delete
         </button>
       </div>
