@@ -63,6 +63,14 @@ Added a flag to check if the details should be visible in the state, a function 
 Added the functionality, however, did not need to send all the blog details, just needed to use `$inc` with 1. Also had to make a separate component for showing the likes so that they could be increased in the front end. Refreshing the page would sync the latest count from the server.
 
 
+## Exercise 5.9
+
+Performed the sort simply with the `array.sort()` method on the front end.
+
+
+## Exercise 5.10
+
+Added the functionality, which required a small change in the backend, and with a comparison between the logged-in user's id and the userid of the blog, conditional rendering of the `Delete` button was achieved.
 
 ---
 
