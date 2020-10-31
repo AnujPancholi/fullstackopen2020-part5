@@ -36,9 +36,10 @@ const LikesContainer = ({ likesCount, blogId }) => {
 }
 
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, refreshBlogList, token }) => {
   const [isDetailsVisible,setIsDetailsVisible] = useState(false)
 
+  const { addToast } = useToasts()
 
   const detailsClassNames = isDetailsVisible ? '' : 'hidden'
 
@@ -47,6 +48,23 @@ const Blog = ({ blog }) => {
   }
 
 
+  const performBlogDelete = () => {
+    (async() => {
+      try{
+        const blogDeleteResult = await blogService.deleteBlog(blog.id,token)
+        refreshBlogList()
+        addToast('Blog deleted',{
+          appearance: 'success',
+          autoDismiss: true
+        })
+      }catch(e){
+        addToast(e.message || 'AN UNKNOWN ERROR OCCURRED',{
+          appearance: 'error',
+          autoDismiss: true
+        })
+      }
+    })()
+  }
 
   return (
     <div className="blog-container">
@@ -58,6 +76,9 @@ const Blog = ({ blog }) => {
         <hr />
         Blog URL: {blog.url}<br />
         <LikesContainer likesCount={blog.likes} blogId={blog.id} />
+        <button onClick={performBlogDelete}>
+          Delete
+        </button>
       </div>
       <button onClick={toggleBlogDetailsVisibility}>
         {isDetailsVisible ? 'Close Details' : 'View Details'}

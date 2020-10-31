@@ -80,5 +80,36 @@ const addLikeToBlog = (blogId) => {
   })
 }
 
+const deleteBlog = (blogId,token) => {
+  return new Promise((resolve,reject) => {
+    (async() => {
+      try{
+        const blogDeleteResult = await blogsAxios({
+          method: "DELETE",
+          url: `/${blogId}`,
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
 
-export default { getAll, addNewBlog, addLikeToBlog }
+        resolve(blogDeleteResult.data);
+
+      }catch(e){
+        if(e.response){
+          reject(e.response.data)
+        } else if(e.request){
+          reject({
+            message: 'NO RESPONSE RECEIVED FROM SERVER'
+          })
+        } else {
+          reject({
+            message: 'AN ERROR OCCURRED'
+          })
+        }
+      }
+    })()
+  })
+}
+
+
+export default { getAll, addNewBlog, addLikeToBlog, deleteBlog }
