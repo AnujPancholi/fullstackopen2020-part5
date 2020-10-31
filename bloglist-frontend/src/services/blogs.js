@@ -5,9 +5,14 @@ const blogsAxios = axios.create({
   baseURL: baseUrl
 })
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const getAll = async() => {
+
+  const response =  await axios.get(baseUrl)
+
+  const blogs = response.data;
+  blogs.sort((b1,b2) => b2.likes-b1.likes)
+
+  return blogs
 }
 
 const addNewBlog = (blogDetails,token) => {
