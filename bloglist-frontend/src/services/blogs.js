@@ -9,7 +9,7 @@ const getAll = async() => {
 
   const response =  await axios.get(baseUrl)
 
-  const blogs = response.data;
+  const blogs = response.data
   blogs.sort((b1,b2) => b2.likes-b1.likes)
 
   return blogs
@@ -85,14 +85,14 @@ const deleteBlog = (blogId,token) => {
     (async() => {
       try{
         const blogDeleteResult = await blogsAxios({
-          method: "DELETE",
+          method: 'DELETE',
           url: `/${blogId}`,
           headers: {
             'Authorization': `Bearer ${token}`
           }
         })
 
-        resolve(blogDeleteResult.data);
+        resolve(blogDeleteResult.data)
 
       }catch(e){
         if(e.response){
