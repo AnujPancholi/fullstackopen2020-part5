@@ -1,4 +1,13 @@
 .blog-container {
     border: 1px solid black;
     margin: 2px 0px;
+    max-width: 50%;
+}
+
+.blog-title {
+    margin: 1px;
+}
+
+.hidden {
+    display: none;
 }
