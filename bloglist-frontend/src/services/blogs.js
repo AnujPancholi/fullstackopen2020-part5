@@ -42,4 +42,35 @@ const addNewBlog = (blogDetails,token) => {
   })
 }
 
-export default { getAll, addNewBlog }
+const addLikeToBlog = (blogId) => {
+  return new Promise((resolve,reject) => {
+    (async() => {
+      try{
+        const blogAddLikeResult = await blogsAxios({
+          method: 'PUT',
+          url: `/${blogId}`,
+          data: {
+            '$inc': {
+              'likes': 1
+            }
+          }
+        })
+      }catch(e){
+        if(e.response){
+          reject(e.response.data)
+        } else if(e.request){
+          reject({
+            message: 'NO RESPONSE RECEIVED FROM SERVER'
+          })
+        } else {
+          reject({
+            message: 'AN ERROR OCCURRED'
+          })
+        }
+      }
+    })()
+  })
+}
+
+
+export default { getAll, addNewBlog, addLikeToBlog }
