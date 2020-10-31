@@ -55,6 +55,9 @@ const addLikeToBlog = (blogId) => {
             }
           }
         })
+
+        resolve(blogAddLikeResult.data)
+
       }catch(e){
         if(e.response){
           reject(e.response.data)
