@@ -72,6 +72,11 @@ Performed the sort simply with the `array.sort()` method on the front end.
 
 Added the functionality, which required a small change in the backend, and with a comparison between the logged-in user's id and the userid of the blog, conditional rendering of the `Delete` button was achieved.
 
+
+## Exercise 5.11
+
+Adding the test to check for the existence of the `title` and `author` was easy enough, what was tricky is adding the assertions to check for non-existence of the `url` and `likes`. I did find a solution [here](https://stackoverflow.com/a/52783201/6718353) using the `queryByText()` method.
+
 ---
 
 
