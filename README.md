@@ -77,6 +77,11 @@ Added the functionality, which required a small change in the backend, and with 
 
 Adding the test to check for the existence of the `title` and `author` was easy enough, what was tricky is adding the assertions to check for non-existence of the `url` and `likes`. I did find a solution [here](https://stackoverflow.com/a/52783201/6718353) using the `queryByText()` method.
 
+
+## Exercise 5.14
+
+Used `fireEvent` to test this quite simple to implement.
+
 ---
 
 
