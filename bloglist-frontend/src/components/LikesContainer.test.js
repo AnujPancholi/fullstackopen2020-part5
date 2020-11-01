@@ -1,11 +1,11 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
+import { act } from 'react-dom/test-utils'
 import { render, fireEvent } from '@testing-library/react'
 
 import LikesContainer from './LikesContainer.js'
 
 import './css/Blog.css'
-import { act } from 'react-dom/test-utils'
 
 
 describe('Tests for LikesContainer component',() => {
