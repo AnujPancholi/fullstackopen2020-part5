@@ -1,35 +1,31 @@
 import React, { useState } from 'react'
-import { useToasts } from 'react-toast-notifications'
 
-import blogService from '../services/blogs.js'
 
 import './css/Blog.css'
 
 
-const LikesContainer = ({ likesCount, blogId }) => {
+const LikesContainer = ({ likesCount, blogId, addLike }) => {
   const [likes,setLikes] = useState(likesCount || 0)
 
-  const { addToast } = useToasts()
 
-  const addLike = () => {
+  const handleAddLike = () => {
     (async() => {
-      try{
-        const likeAdditionResult = await blogService.addLikeToBlog(blogId)
-
-        setLikes(likes+1)
-
+      try {
+        const likeAdditionResult = await addLike()
+        if(likeAdditionResult.isSuccessful){
+          setLikes(likes+1)
+        }
       }catch(e){
-        addToast(e.message || 'AN UNKNOWN ERROR OCCURRED',{
-          appearance: 'error',
-          autoDismiss: true
-        })
+        console.error('ERROR',e)
       }
     })()
   }
 
+
+
   return (<>
       Likes: {likes} &nbsp;
-    <button onClick={addLike}>
+    <button onClick={handleAddLike}>
             Like
     </button>
   </>)

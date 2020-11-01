@@ -40,6 +40,26 @@ const Blog = ({ blog, refreshBlogList, user }) => {
     })()
   }
 
+  const addLike = () => {
+    return new Promise((resolve,reject) => {
+      (async() => {
+        try{
+          const likeAdditionResult = await blogService.addLikeToBlog(blog.id)
+          resolve({
+            isSuccessful: true
+          })
+
+        }catch(e){
+          addToast(e.message || 'AN UNKNOWN ERROR OCCURRED',{
+            appearance: 'error',
+            autoDismiss: true
+          })
+          reject(e)
+        }
+      })()
+    })
+  }
+
   return (
     <div className="blog-container">
       <div className="blog-title">
@@ -49,7 +69,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
       <div className={detailsClassNames}>
         <hr />
         Blog URL: {blog.url}<br />
-        <LikesContainer likesCount={blog.likes} blogId={blog.id} />
+        <LikesContainer likesCount={blog.likes} blogId={blog.id} addLike={addLike} />
         <button onClick={performBlogDelete} className={user && blog.user && blog.user.id===user.id ? '' : 'hidden'}>
           Delete
         </button>
