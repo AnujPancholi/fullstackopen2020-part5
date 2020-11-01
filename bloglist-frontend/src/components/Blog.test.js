@@ -33,24 +33,26 @@ const mockRefreshBlogLists = () => {
 }
 
 
-test('Blog renders only default content',() => {
-  const testBlog = TEST_BLOG_DATA[0]
-  const testUser = TEST_USER_DATA[0]
+describe('Tests for Blog component',() => {
+  test('Blog renders only default content',() => {
+    const testBlog = TEST_BLOG_DATA[0]
+    const testUser = TEST_USER_DATA[0]
 
-  const component = render(
-    <ToastProvider>
-      <Blog blog={testBlog} user={testUser} refreshBlogList={mockRefreshBlogLists} />
-    </ToastProvider>
-  )
+    const component = render(
+      <ToastProvider>
+        <Blog blog={testBlog} user={testUser} refreshBlogList={mockRefreshBlogLists} />
+      </ToastProvider>
+    )
 
-  expect(component.container).toHaveTextContent(testBlog.title)
-  expect(component.container).toHaveTextContent(testBlog.author)
+    expect(component.container).toHaveTextContent(testBlog.title)
+    expect(component.container).toHaveTextContent(testBlog.author)
 
-  const urlPart = component.queryByText(testBlog.url)
-  expect(urlPart).toBe(null)
+    const urlPart = component.queryByText(testBlog.url)
+    expect(urlPart).toBe(null)
 
-  const likesPart = component.queryByText(String(testBlog.likes))
-  expect(likesPart).toBe(null)
+    const likesPart = component.queryByText(String(testBlog.likes))
+    expect(likesPart).toBe(null)
 
 
+  })
 })
