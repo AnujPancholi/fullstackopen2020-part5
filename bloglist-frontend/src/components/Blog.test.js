@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import { ToastProvider } from 'react-toast-notifications'
 
 import Blog from './Blog.js'
@@ -53,6 +53,26 @@ describe('Tests for Blog component',() => {
     const likesPart = component.queryByText(String(testBlog.likes))
     expect(likesPart).toBe(null)
 
+
+  })
+
+  test('Blog renders details when details button clicked',() => {
+    const testBlog = TEST_BLOG_DATA[0]
+    const testUser = TEST_USER_DATA[0]
+
+    const component = render(
+      <ToastProvider>
+        <Blog blog={testBlog} user={testUser} refreshBlogList={mockRefreshBlogLists} />
+      </ToastProvider>
+    )
+
+    const detailsButton = component.getByText('View Details')
+    fireEvent.click(detailsButton)
+
+    expect(component.container).toHaveTextContent(testBlog.title)
+    expect(component.container).toHaveTextContent(testBlog.author)
+    expect(component.container).toHaveTextContent(testBlog.url)
+    expect(component.container).toHaveTextContent(String(testBlog.likes))
 
   })
 })
