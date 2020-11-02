@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { act } from 'react-dom/test-utils'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, act } from '@testing-library/react'
+
 
 import LikesContainer from './LikesContainer.js'
 
@@ -15,11 +15,12 @@ describe('Tests for LikesContainer component',() => {
     const addLike = jest.fn(() => Promise.resolve({
       isSuccessful: true
     }))
-    act(() => {
-      const component = render(
-        <LikesContainer likes={0} blogId={'id'} addLike={addLike} />
-      )
 
+    const component = render(
+      <LikesContainer likes={0} blogId={'id'} addLike={addLike} />
+    )
+
+    act(() => {
       const likeButton = component.getByText('Like')
 
 
@@ -29,7 +30,11 @@ describe('Tests for LikesContainer component',() => {
     })
 
 
+
+
     expect(addLike.mock.calls.length).toBe(NUMBER_OF_BUTTON_CLICKS)
+
+
 
   })
 })

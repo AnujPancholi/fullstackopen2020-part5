@@ -8,17 +8,17 @@ const LikesContainer = ({ likesCount, blogId, addLike }) => {
   const [likes,setLikes] = useState(likesCount || 0)
 
 
-  const handleAddLike = () => {
-    (async() => {
-      try {
-        const likeAdditionResult = await addLike()
-        if(likeAdditionResult.isSuccessful){
-          setLikes(likes+1)
-        }
-      }catch(e){
-        console.error('ERROR',e)
+  const handleAddLike = async() => {
+    // (async() => {
+    try {
+      const likeAdditionResult = await addLike()
+      if(likeAdditionResult.isSuccessful){
+        setLikes(likes+1)
       }
-    })()
+    }catch(e){
+      console.error('ERROR',e)
+    }
+    // })()
   }
 
 
