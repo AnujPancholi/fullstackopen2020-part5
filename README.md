@@ -82,6 +82,27 @@ Adding the test to check for the existence of the `title` and `author` was easy 
 
 Used `fireEvent` to test this quite simple to implement.
 
+
+## Exercise 5.15
+
+Before I explain how I did this exercise, let me focus on how the like button is implemented.
+
+The implementation of the like button functionality is done in exercises 5.7 and 5.8, however, there were certain issues that I saw with that approach:
+
+ - Firstly, I don't see why we would need to update the whole document if the only one like is to be added. The exercise said that the backend will only accept the whole document, but the backend that I made in the last part can update only some property in it (which is how it should work).
+ - Secondly, there would be an issue of concurrency here. The `like` that is being updated is the absolute value of `likes`, with 1 added to the current value of `likes`, however, if two users on different browsers were to press like at nearly the same time, this would create a race condition in which one of the likes would be dropped. It's a no-brainer in this situation to only increment the `likes` by 1 to mitigate this concurrency issue.
+ - Thirdly, if we do update the `blog` document, the state of the component which lists the blogs (`BlogListing` in my case) would be the same, unless we change that particular `blog` with the updated `likes` count, which we shouldn't do, given that we have to set the state of any component using only the setter function provided by `useState` hook. One way to overcome this would be to reset the state of the `BlogListing` component, but this would be very cumbersome and would need us to re-render the whole component just because of one like.
+ 
+The behaviour here should be that the change should be made in the database via the PUT API call and the `likes` count should subsequently go up by 1 on the front-end, without anything else being affected.
+
+To achieve this, I made another component rendered within the `Blog` component, called `LikesContainer`, which displays the `likes` count, which is in its own state, initialized by the `likes` count of its parent `Blog` component, and contains the "Like" button that performs the increment.
+
+However, to test whether the correct function is being triggered or not, I would have to pass the function to the `LikesContainer` component as a prop (as per exercise 5.15), so I made that function `addLike` in the `Blog` component and passed it to `LikesContainer`. Then I mocked that function using `jest.fn()`, gave it a [mocked implementation](https://jestjs.io/docs/en/jest-object#jestfnimplementation) that mocked a successful likes update in the DB. So, this test is written in the `LikesContainer.test.js` file.
+
+**NOTE:**: This `addLikes` function is **not** the handler of the Like button, but is used by a function that is the handler of the Like button, therefore, I was getting a warning that said [that any events that cause state change should be wrapped in "act"](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning). I tried sevaral ways, every way I could to get rid of it but couldn't. All the tests pass, however, that warning persists.
+
+
+
 ---
 
 
