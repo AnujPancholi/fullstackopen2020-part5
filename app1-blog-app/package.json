@@ -7,7 +7,8 @@
     "prod": "NODE_ENV=PRODUCTION node src/index.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon src/index.js",
     "test": "NODE_ENV=TEST jest --verbose --runInBand",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start:test": "cross-env NODE_ENV=test node index.js"
   },
   "keywords": [],
   "author": "",
