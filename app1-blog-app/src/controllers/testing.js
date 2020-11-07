@@ -32,7 +32,9 @@ testingRouter.post('/reset',async(req,res,next) => {
     }
     delete testUserObj.password;
 
-    await UserModel.insertOne(testUserObj)
+    const testUser = new UserModel(testUserObj)
+
+    await testUser.save()
     
     res.status(204).send();
   } catch(e) {
