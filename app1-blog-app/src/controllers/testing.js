@@ -1,14 +1,17 @@
 "use strict"
 
-const testing = require('express').Router()
+const testingRouter = require('express').Router()
 
 const BlogModel = require('../models/blogs.js');
 const UserModel = require('../models/users.js');
 const logger = require('../utils/logger.js');
 // const mongooseUtils = require("../utils/mongooseUtils.js");
 
+testingRouter.get('/ping',(req,res,next) => {
+  res.status(200).send();
+})
 
-testing.post('/reset',async(req,res,next) => {
+testingRouter.post('/reset',async(req,res,next) => {
 
   try{
     await BlogModel.deleteMany({});
@@ -23,4 +26,4 @@ testing.post('/reset',async(req,res,next) => {
 
 })
 
-module.exports = testing
+module.exports = testingRouter
