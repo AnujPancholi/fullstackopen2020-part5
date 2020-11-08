@@ -102,6 +102,15 @@ However, to test whether the correct function is being triggered or not, I would
 **NOTE:**: This `addLikes` function is **not** the handler of the Like button, but is used by a function that is the handler of the Like button, therefore, I was getting a warning that said [that any events that cause state change should be wrapped in "act"](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning). I tried sevaral ways, every way I could to get rid of it but couldn't. All the tests pass, however, that warning persists.
 
 
+## Exercise 5.17
+
+I added an endpoint `/testing/reset` to:
+
+ - delete all documents in the `blogs` and `users` collections.
+ - add just one admin user in the `users` collections.
+
+After that, writing the test for the login page was quite easy. Note that since localstorage stores values against a particular origin, one would need to ensure that localstorage is cleared (user is logged out) for this test to work
+
 
 ---
 
