@@ -63,6 +63,7 @@ const LoginForm = ({ setUser }) => {
           type="text"
           value={username}
           name="Username"
+          id="login-username-entry"
           onChange={handleUsernameChange}
         />
       </div>
@@ -72,10 +73,11 @@ const LoginForm = ({ setUser }) => {
           type="password"
           value={password}
           name="Password"
+          id="login-password-entry"
           onChange={handlePasswordChange}
         />
       </div>
-      <button type="submit">login</button>
+      <button type="submit" id="login-button">login</button>
     </form>
   </div>)
 
