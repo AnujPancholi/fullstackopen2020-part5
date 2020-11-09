@@ -65,20 +65,22 @@ const BlogEntryForm = ({ refreshBlogList, user }) => {
   return (<div>
     <form onSubmit={handleAddBlogSubmit} className={isVisible ? '' : 'hidden'}>
       <div>
-          title
+          Title
         <input
           type="text"
           value={title}
           name="Title"
+          id='blog-input-title'
           onChange={handleTitleChange}
         />
       </div>
       <div>
-          url
+          URL
         <input
           type="text"
           value={url}
           name="URL"
+          id='blog-input-url'
           onChange={handleUrlChange}
         />
       </div>
