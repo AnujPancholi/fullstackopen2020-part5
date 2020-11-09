@@ -112,6 +112,14 @@ I added an endpoint `/testing/reset` to:
 After that, writing the test for the login page was quite easy. Note that since localstorage stores values against a particular origin, one would need to ensure that localstorage is cleared (user is logged out) for this test to work
 
 
+## Exercise 5.18
+
+Added tests to check
+ - one error scenario where nothing is entered and login is clicked.
+ - valid username and wrong password is entered.
+ - correct username-password combination is entered.
+I know more scenarios could be tested but this would be enough for the purpose of the exercise.
+
 ---
 
 
