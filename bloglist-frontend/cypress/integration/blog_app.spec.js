@@ -1,6 +1,8 @@
 
 const BASE_URL = 'http://localhost:3000'
 
+import CONSTANTS from '../../src/lib/constants.js'
+
 describe('Blog app', function() {
 
   beforeEach(() => {
@@ -49,6 +51,28 @@ describe('Blog app', function() {
       cy.contains('Hello, testUsernameAlpha')
     })
 
+  })
+
+})
+
+
+describe('Blogs',function(){
+  beforeEach(() => {
+    cy.request({
+      method: 'POST',
+      url: 'http://localhost:3001/api/login',
+      auth: {
+        user: 'testUsernameAlpha',
+        pass: 'testPass1'
+      }
+    }).then((response) => {
+      localStorage.setItem(CONSTANTS.LS_LOGIN_NAME,JSON.stringify(response.body))
+      cy.visit(BASE_URL)
+    })
+  })
+
+  it('should display button to add blogs',function(){
+    cy.contains('Add new blog')
   })
 
 })
