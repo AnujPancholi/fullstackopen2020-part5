@@ -120,6 +120,11 @@ Added tests to check
  - correct username-password combination is entered.
 I know more scenarios could be tested but this would be enough for the purpose of the exercise.
 
+
+## Exercise 5.19
+
+Added the test, however, needed to do some research to see how exactly to check whether the blog has been added in the list of blogs, and found the solution, by adding a `data-*` attribute in the element that contains the title of the blog, and used the use of `cy.get()` as shown [here]("https://docs.cypress.io/api/commands/get.html#Find-5-elements-with-the-given-data-attribute") to get the exact element needed and simple checked if the title is added.
+
 ---
 
 
