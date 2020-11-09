@@ -57,6 +57,11 @@ describe('Blog app', function() {
 
 
 describe('Blogs',function(){
+
+  before(() => {
+    cy.request('POST','http://localhost:3001/api/testing/reset')
+  })
+
   beforeEach(() => {
     cy.request({
       method: 'POST',
@@ -79,6 +84,13 @@ describe('Blogs',function(){
     cy.get('#blog-input-add-button').click()
 
     cy.contains('Blog "Testing is a Pain" added')
+
+    cy.get(`[data-title="${'Testing is a Pain'}"]`).should('contain','Testing is a Pain')
+
+
+  })
+
+  it('should contain new blog',function(){
 
     cy.get(`[data-title="${'Testing is a Pain'}"]`).should('contain','Testing is a Pain')
 
