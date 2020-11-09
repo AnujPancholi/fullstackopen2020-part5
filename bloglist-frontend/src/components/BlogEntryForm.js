@@ -84,12 +84,12 @@ const BlogEntryForm = ({ refreshBlogList, user }) => {
           onChange={handleUrlChange}
         />
       </div>
-      <button type="submit">Add</button>
+      <button type="submit" id='blog-input-add-button'>Add</button>
     </form>
-    <button onClick={toggleFormVisibility} className={isVisible ? '' : 'hidden'}>
+    <button onClick={toggleFormVisibility} id='blog-input-hide-button' className={isVisible ? '' : 'hidden'}>
           Hide
     </button>
-    <button onClick={toggleFormVisibility} className={isVisible ? 'hidden' : ''}>
+    <button onClick={toggleFormVisibility} id='blog-input-show-button' className={isVisible ? 'hidden' : ''}>
           Add new blog
     </button>
   </div>)

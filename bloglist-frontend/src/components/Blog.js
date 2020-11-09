@@ -62,7 +62,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
 
   return (
     <div className="blog-container">
-      <div className="blog-title">
+      <div className="blog-title" data-title={blog.title}>
         {blog.title}<br />
         by {blog.author}
       </div>

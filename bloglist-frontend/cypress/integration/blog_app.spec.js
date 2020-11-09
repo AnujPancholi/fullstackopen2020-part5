@@ -71,8 +71,18 @@ describe('Blogs',function(){
     })
   })
 
-  it('should display button to add blogs',function(){
-    cy.contains('Add new blog')
+  it('should be able to add new blog',function(){
+    cy.get('#blog-input-show-button').click()
+    cy.get('#blog-input-title').type('Testing is a Pain')
+    cy.get('#blog-input-url').type('http://test.url.com')
+
+    cy.get('#blog-input-add-button').click()
+
+    cy.contains('Blog "Testing is a Pain" added')
+
+    cy.get(`[data-title="${'Testing is a Pain'}"]`).should('contain','Testing is a Pain')
+
+
   })
 
 })
