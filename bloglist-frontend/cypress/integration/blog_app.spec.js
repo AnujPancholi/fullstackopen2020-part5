@@ -90,9 +90,11 @@ describe('Blogs',function(){
 
   })
 
-  it('should contain new blog',function(){
+  it('should click like button',function(){
 
-    cy.get(`[data-title="${'Testing is a Pain'}"]`).should('contain','Testing is a Pain')
+    cy.contains('View Details').click()
+
+    cy.contains('Like').click()
 
 
   })

@@ -25,7 +25,7 @@ const LikesContainer = ({ likesCount, blogId, addLike }) => {
 
   return (<>
       Likes: {likes} &nbsp;
-    <button onClick={handleAddLike}>
+    <button className='like-button' onClick={handleAddLike}>
             Like
     </button>
   </>)
