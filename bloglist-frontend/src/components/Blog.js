@@ -62,7 +62,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
 
   return (
     <div className="blog-container">
-      <div className="blog-title" data-title={blog.title}>
+      <div className="blog-title" data-title={blog.title} data-blogid={blog.id}>
         {blog.title}<br />
         by {blog.author}
       </div>
@@ -74,7 +74,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
           Delete
         </button>
       </div>
-      <button onClick={toggleBlogDetailsVisibility}>
+      <button onClick={toggleBlogDetailsVisibility} id={`blog-details-vis-button-${blog.id}`}>
         {isDetailsVisible ? 'Close Details' : 'View Details'}
       </button>
     </div>

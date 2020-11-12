@@ -90,7 +90,13 @@ describe('Blogs',function(){
 
   })
 
-  it('should click like button',function(){
+  it('should click like button',async function(){
+
+    const testTitleElement = await cy.contains('Testing is a Pain')
+
+    const blogId = testTitleElement.attr('data-blogid')
+
+    console.log(blogId)
 
     cy.contains('View Details').click()
 
