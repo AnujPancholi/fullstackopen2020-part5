@@ -3,6 +3,14 @@ const BASE_URL = 'http://localhost:3000'
 
 import CONSTANTS from '../../src/lib/constants.js'
 
+const asyncHangup = (timeout) => {
+  return new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve(true)
+    },timeout)
+  })
+}
+
 describe('Blog app', function() {
 
   beforeEach(() => {
@@ -93,15 +101,22 @@ describe('Blogs',function(){
   it('should click like button',async function(){
 
     const testTitleElement = await cy.contains('Testing is a Pain')
-
     const blogId = testTitleElement.attr('data-blogid')
 
-    console.log(blogId)
+    cy.get(`#blog-details-vis-button-${blogId}`).click()
 
-    cy.contains('View Details').click()
+    const likesDisplayElement = Cypress.$(`#blog-likes-display-${blogId}`)
+    const initialLikes = parseInt(likesDisplayElement.text().split(' ')[1])
 
-    cy.contains('Like').click()
+    cy.get(`#blog-like-button-${blogId}`).click()
 
+    await asyncHangup(3000)
+
+    const changedLikesDisplayElement = Cypress.$(`#blog-likes-display-${blogId}`)
+
+    const finalLikes = parseInt(changedLikesDisplayElement.text().split(' ')[1])
+
+    expect(finalLikes).to.equal(initialLikes+1)
 
   })
 
