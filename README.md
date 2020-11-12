@@ -125,6 +125,19 @@ I know more scenarios could be tested but this would be enough for the purpose o
 
 Added the test, however, needed to do some research to see how exactly to check whether the blog has been added in the list of blogs, and found the solution, by adding a `data-*` attribute in the element that contains the title of the blog, and used the use of `cy.get()` as shown [here]("https://docs.cypress.io/api/commands/get.html#Find-5-elements-with-the-given-data-attribute") to get the exact element needed and simple checked if the title is added.
 
+
+## Exercise 5.20
+
+Here was my approach with this test:
+
+1. Add some useful `id` and `class` attributes to some of the DOM elements in the JSX to help with the testing (of course, this is not part of the test itself, but it's important).
+2. Get the `blog-container` div using `cy.contains(<title>)` and get the blogId via its `data-blogid` attribute.
+3. Use the blogId to get the likes display span as a jquery element using `Cypress.$` and deduce the current number of likes from that (will most probably be 0).
+4. Get the like button by id using the blogId and click it.
+5. Wait for few seconds using the custom `asyncHangup` function. This is because the likes will not immediately change, first it will be updated on the server end and the likes will change on the front-end only when that request is complete. So, we need to allow some time for that to happen, since we do not know when that will finish.
+6. Get the number of likes again using the aforementioed method.
+7. Assert that the likes count has increased by 1.
+
 ---
 
 
