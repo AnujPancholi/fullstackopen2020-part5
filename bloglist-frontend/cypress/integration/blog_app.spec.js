@@ -3,6 +3,13 @@ const BASE_URL = 'http://localhost:3000'
 
 import CONSTANTS from '../../src/lib/constants.js'
 
+const testUserObj = {
+  username: 'testUsernameAlpha',
+  name: 'First Username',
+  user_type: 'ADMIN',
+  password: 'testPass1'
+}
+
 const asyncHangup = (timeout) => {
   return new Promise((resolve,reject) => {
     setTimeout(() => {
@@ -39,7 +46,7 @@ describe('Blog app', function() {
     it('should give error if wrong password entered',function(){
       cy.visit(BASE_URL)
 
-      cy.get('#login-username-entry').type('testUsernameAlpha')
+      cy.get('#login-username-entry').type(testUserObj.username)
       cy.get('#login-password-entry').type('wrongpassword')
 
       cy.get('#login-button').click()
@@ -51,12 +58,12 @@ describe('Blog app', function() {
     it('should log in user with correct credentials successfully', function(){
       cy.visit(BASE_URL)
 
-      cy.get('#login-username-entry').type('testUsernameAlpha')
-      cy.get('#login-password-entry').type('testPass1')
+      cy.get('#login-username-entry').type(testUserObj.username)
+      cy.get('#login-password-entry').type(testUserObj.password)
 
       cy.get('#login-button').click()
 
-      cy.contains('Hello, testUsernameAlpha')
+      cy.contains(`Hello, ${testUserObj.username}`)
     })
 
   })
@@ -75,8 +82,8 @@ describe('Blogs',function(){
       method: 'POST',
       url: 'http://localhost:3001/api/login',
       auth: {
-        user: 'testUsernameAlpha',
-        pass: 'testPass1'
+        user: testUserObj.username,
+        pass: testUserObj.password
       }
     }).then((response) => {
       localStorage.setItem(CONSTANTS.LS_LOGIN_NAME,JSON.stringify(response.body))
