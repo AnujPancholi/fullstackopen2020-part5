@@ -138,6 +138,11 @@ Here was my approach with this test:
 6. Get the number of likes again using the aforementioed method.
 7. Assert that the likes count has increased by 1.
 
+
+## Exercise 5.21
+
+First, I added a `data-userid` attribute to the blog title container element in the JSX, then in the test, I fetch that via the title, and check if the `data-userid` attribute reconciles with the `id` of the logged-in user in localstorage. Also, I parse the author name in the blog title container and check that with the localstorage value as well. This confirms that the user who created this blog is indeed the one who is logged in, and therefore should have the abililty to delete this blog. Then it's as simple as getting the delete button (via the `id` attribute) and clicking it which Cypress makes very easy.
+
 ---
 
 
