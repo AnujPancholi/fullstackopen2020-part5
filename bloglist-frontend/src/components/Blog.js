@@ -10,6 +10,7 @@ import './css/Blog.css'
 
 
 
+
 const Blog = ({ blog, refreshBlogList, user }) => {
   const [isDetailsVisible,setIsDetailsVisible] = useState(false)
 
@@ -62,7 +63,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
 
   return (
     <div className="blog-container" id={`blog-container-${blog.id}`}>
-      <div className="blog-title" data-title={blog.title} data-blogid={blog.id}>
+      <div className="blog-title" data-title={blog.title} data-blogid={blog.id} data-userid={blog.user.id}>
         {blog.title}<br />
         by {blog.author}
       </div>
@@ -70,7 +71,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
         <hr />
         Blog URL: {blog.url}<br />
         <LikesContainer likesCount={blog.likes} blogId={blog.id} addLike={addLike} />
-        <button onClick={performBlogDelete} className={user && blog.user && blog.user.id===user.id ? '' : 'hidden'}>
+        <button onClick={performBlogDelete} id={`blog-delete-button-${blog.id}`} className={user && blog.user && blog.user.id===user.id ? '' : 'hidden'}>
           Delete
         </button>
       </div>

@@ -138,4 +138,29 @@ describe('Blogs',function(){
 
   })
 
+  it('should be able to delete blog that user owns',async function(){
+    const testTitleElement = await cy.contains(testBlog.title)
+    const blogId = testTitleElement.attr('data-blogid')
+    const blogUserId = testTitleElement.attr('data-userid')
+
+    const titleText = testTitleElement.text();
+
+    const displayedAuthorName = titleText.split('by ')[1]
+
+    const loggedInUser = JSON.parse(localStorage.getItem(CONSTANTS.LS_LOGIN_NAME))
+
+    expect(loggedInUser.id).to.equal(blogUserId)
+    expect(loggedInUser.name).to.equal(displayedAuthorName)
+
+    cy.get(`#blog-details-vis-button-${blogId}`).click()
+
+    cy.get(`#blog-delete-button-${blogId}`).click()
+
+    cy.get(`#blog-container-${blogId}`).should('not.exist')
+
+
+  })
+
+
+
 })
