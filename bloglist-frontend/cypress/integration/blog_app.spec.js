@@ -3,12 +3,17 @@ const BASE_URL = 'http://localhost:3000'
 
 import CONSTANTS from '../../src/lib/constants.js'
 
-const testUserObj = {
+const TEST_USER_DATA = [{
   username: 'testUsernameAlpha',
   name: 'First Username',
   user_type: 'ADMIN',
   password: 'testPass1'
-}
+}]
+
+const TEST_BLOG_DATA = [{
+  title: 'Testing is a Pain',
+  url: 'http://test.url.com'
+}]
 
 const asyncHangup = (timeout) => {
   return new Promise((resolve,reject) => {
@@ -19,6 +24,8 @@ const asyncHangup = (timeout) => {
 }
 
 describe('Blog app', function() {
+
+  const testUserObj = TEST_USER_DATA[0]
 
   beforeEach(() => {
     cy.request('POST','http://localhost:3001/api/testing/reset')
@@ -73,6 +80,10 @@ describe('Blog app', function() {
 
 describe('Blogs',function(){
 
+  const testUserObj = TEST_USER_DATA[0]
+
+  const testBlog = TEST_BLOG_DATA[0]
+
   before(() => {
     cy.request('POST','http://localhost:3001/api/testing/reset')
   })
@@ -93,21 +104,21 @@ describe('Blogs',function(){
 
   it('should be able to add new blog',function(){
     cy.get('#blog-input-show-button').click()
-    cy.get('#blog-input-title').type('Testing is a Pain')
-    cy.get('#blog-input-url').type('http://test.url.com')
+    cy.get('#blog-input-title').type(testBlog.title)
+    cy.get('#blog-input-url').type(testBlog.url)
 
     cy.get('#blog-input-add-button').click()
 
-    cy.contains('Blog "Testing is a Pain" added')
+    cy.contains(`Blog "${testBlog.title}" added`)
 
-    cy.get(`[data-title="${'Testing is a Pain'}"]`).should('contain','Testing is a Pain')
+    cy.get(`[data-title="${testBlog.title}"]`).should('contain',testBlog.title)
 
 
   })
 
   it('should click like button',async function(){
 
-    const testTitleElement = await cy.contains('Testing is a Pain')
+    const testTitleElement = await cy.contains(testBlog.title)
     const blogId = testTitleElement.attr('data-blogid')
 
     cy.get(`#blog-details-vis-button-${blogId}`).click()
