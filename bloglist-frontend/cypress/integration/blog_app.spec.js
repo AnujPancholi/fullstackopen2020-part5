@@ -161,6 +161,29 @@ describe('Blogs',function(){
 
   })
 
+  describe('Tests on set of blogs',() => {
+    before(() => {
+      cy.request('POST','http://localhost:3001/api/testing/reset?blogset=SET1')
+    })
 
+    it('should order blogs by likes',async function(){
 
+      cy.get('.blog-details-vis-button').each(visButton => {
+        visButton.click()
+      })
+
+      await asyncHangup(1000)
+
+      const likesDisplayContainers = Cypress.$('.likes-display')
+
+      // console.log(likesDisplayContainers.toArray())
+      const likesArr = likesDisplayContainers.toArray().map(elem => parseInt(elem.innerText.split(' ')[1]))
+
+      for(let i=0;i<likesArr.length-1;++i){
+        expect(likesArr[i]>=likesArr[i+1]).to.be.true
+      }
+
+    })
+
+  })
 })

@@ -75,7 +75,7 @@ const Blog = ({ blog, refreshBlogList, user }) => {
           Delete
         </button>
       </div>
-      <button onClick={toggleBlogDetailsVisibility} id={`blog-details-vis-button-${blog.id}`}>
+      <button onClick={toggleBlogDetailsVisibility} className="blog-details-vis-button" id={`blog-details-vis-button-${blog.id}`}>
         {isDetailsVisible ? 'Close Details' : 'View Details'}
       </button>
     </div>
