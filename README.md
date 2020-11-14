@@ -143,6 +143,12 @@ Here was my approach with this test:
 
 First, I added a `data-userid` attribute to the blog title container element in the JSX, then in the test, I fetch that via the title, and check if the `data-userid` attribute reconciles with the `id` of the logged-in user in localstorage. Also, I parse the author name in the blog title container and check that with the localstorage value as well. This confirms that the user who created this blog is indeed the one who is logged in, and therefore should have the abililty to delete this blog. Then it's as simple as getting the delete button (via the `id` attribute) and clicking it which Cypress makes very easy.
 
+
+## Exercise 5.22
+
+For this test, I would first need to have at least 3 blogs with varying values of `likes`, and to achieve this, I included a parameter in the `reset` endpoint, which, if passed, would add the mock data to test on, instead of having to enter new blogs in cypress itself, not unlike the "bypassing the UI" part. I then made all the likes visible via the `View Details` buttons, got all the likes using `Cypress.$` (it seems jquery still has its uses) and wrote a simple loop to check that each element in the array of likes is at least as big as the next, which ensures that the blogs are sorted.
+
+
 ---
 
 
