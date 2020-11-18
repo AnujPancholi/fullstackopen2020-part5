@@ -23,6 +23,9 @@ const TEST_BLOG_DATA = [
     'title': 'Mock Blog Title',
     'author': 'Author 1',
     'userId': '1',
+    'user': {
+      'id': '1'
+    },
     'url': 'https://www.mockblog.com/123456',
     'likes': 23
   }
